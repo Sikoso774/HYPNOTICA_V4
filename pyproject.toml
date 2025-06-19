@@ -1,12 +1,12 @@
 [project]
-name = "hypnotica"
+name = "hypnotica-v4"
 version = "0.1.0"
-description = "Game 2D -----> Retraycing"
+description = "A prototype game"
 authors = [
-    {name = "Sikoso774",email = "zolenikokolozassi@gmail.com"}
+    {name = "zolenikokolozassi@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = "^3.10"
 dependencies = [
     "pygame (>=2.6.1,<3.0.0)"
 ]
