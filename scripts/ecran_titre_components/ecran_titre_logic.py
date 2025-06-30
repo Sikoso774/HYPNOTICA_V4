@@ -4,7 +4,7 @@ import pygame
 import os
 import sys
 
-from ecran_titre_components.constants import ORANGE
+from scripts.ecran_titre_components.constants import ORANGE
 from scripts.paths import get_resource_path
 from scripts.ecran_titre_components.constants import (
     BLANC, LARGEUR_ECRAN, HAUTEUR_ECRAN, TITRE_FENETRE, NOIR, ROUGE, VERT,  # Ajout de GRIS
