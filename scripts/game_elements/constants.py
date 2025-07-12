@@ -27,7 +27,7 @@ TAILLE_POLICE_JEU = 35
 
 # --- Paramètres du Joueur ---
 PLAYER_SIZE = 50 # Taille du carré temporaire du joueur
-PLAYER_SPEED = 5 # Vitesse de déplacement du joueur
+PLAYER_SPEED = 15 # Vitesse de déplacement du joueur
 
 # --- Paramètres du Téléphone ---
 PHONE_SIZE = 30 # Taille du cercle temporaire du téléphone
@@ -45,7 +45,7 @@ FPS = 60 # Images par seconde
 # Note : Pour les sprites, tu remplaceras ces placeholders par les chemins réels quand tu les auras.
 PLAYER_SPRITE_PATH = None # Placeholder, par exemple "assets/images/player_sprite.png"
 PHONE_SPRITE_PATH = None  # Placeholder, par exemple "assets/images/phone_sprite.png"
-GIF_FOLDER_PATH = get_resource_path("images_gif") # Chemin du dossier GIF pour le background
+GIF_FOLDER_PATH = get_resource_path("assets/images/hyphose_frames") # Chemin du dossier GIF pour le background
 
 # --- Sons (si tu en as pour le gameplay) ---
 # SOUND_COLLECT_PHONE = get_resource_path("assets/sounds/collect_phone.mp3")

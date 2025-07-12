@@ -44,7 +44,7 @@ if __name__ == "__main__":
     running = True
     clock = pygame.time.Clock()
 
-    print("Vérifiez l'animation GIF en arrière-plan. Si rien n'apparaît, vérifiez le dossier 'images_gif'.")
+    print("Vérifiez l'animation GIF en arrière-plan. Si rien n'apparaît, vérifiez le dossier 'hyphose_frames'.")
 
     while running:
         for event in pygame.event.get():

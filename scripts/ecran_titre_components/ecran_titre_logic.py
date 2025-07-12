@@ -65,16 +65,19 @@ class EcranTitre:
     def _load_resources(self):
         self._gif_images = []
         try:
-            image_folder = CHEMIN_IMAGES_GIF
-            if not os.path.isdir(image_folder):
-                raise FileNotFoundError(f"Le dossier GIF n'existe pas : {image_folder}")
+            # Utilise directement CHEMIN_IMAGES_GIF qui est déjà résolu par get_resource_path dans constants.py
+            full_gif_folder_path = CHEMIN_IMAGES_GIF
 
-            files_in_folder = [f for f in os.listdir(image_folder) if f.lower().endswith(".png")]
+            if not os.path.isdir(full_gif_folder_path):
+                raise FileNotFoundError(f"Le dossier GIF n'existe pas : {full_gif_folder_path}")
+
+            files_in_folder = [f for f in os.listdir(full_gif_folder_path) if f.lower().endswith(".png")]
             if not files_in_folder:
-                raise ValueError(f"Aucun fichier PNG trouvé dans : {image_folder}")
+                raise ValueError(f"Aucun fichier PNG trouvé dans : {full_gif_folder_path}")
 
             for filename in sorted(files_in_folder):
-                image_path = get_resource_path(os.path.join("images_gif", filename))
+                # Construit le chemin complet de chaque image à l'intérieur du dossier GIF
+                image_path = os.path.join(full_gif_folder_path, filename)
                 image = pygame.image.load(image_path).convert_alpha()
                 image = pygame.transform.scale(image, (self.largeur, self.hauteur))
                 self._gif_images.append(image)
@@ -88,6 +91,7 @@ class EcranTitre:
             if pygame.get_init():
                 pygame.quit()
             sys.exit()
+
         except pygame.error as e:
             print(f"Erreur Pygame lors du chargement des ressources de l'écran titre : {e}")
             if pygame.get_init():
@@ -173,7 +177,3 @@ if __name__ == "__main__":
         print(f"Écran titre terminé, résultat : {result}")
     except Exception as e:
         print(f"Une erreur s'est produite lors du test de l'écran titre: {e}")
-    finally:
-        if EcranTitre.is_pygame_initialized_by_us and pygame.get_init():
-            pygame.quit()
-        sys.exit()

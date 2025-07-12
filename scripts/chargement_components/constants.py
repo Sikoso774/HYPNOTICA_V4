@@ -9,7 +9,7 @@ HAUTEUR_ECRAN_CHARGEMENT = 600
 TITRE_FENETRE_CHARGEMENT = "HYPNOTICA_V3" # Titre spécifique à l'écran de chargement
 
 # Chemins des ressources (utilisés par resources.py)
-CHEMIN_GIF_CHARGEMENT = get_resource_path("images_gif") # Dossier contenant les images GIF
+CHEMIN_GIF_CHARGEMENT = get_resource_path("assets/images/hyphose_frames") # Dossier contenant les images GIF
 CHEMIN_IMAGE_FIN_CHARGEMENT = get_resource_path("assets/images/pygame_logo.png") # Image à faire spirale
 
 # Durée de la transition en millisecondes

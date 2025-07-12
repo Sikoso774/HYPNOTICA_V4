@@ -23,5 +23,5 @@ TITRE_FENETRE = "HYPNOTICA"
 CHEMIN_POLICE = get_resource_path("assets/fonts/MINDCONTROL.ttf")
 TAILLE_POLICE = 25 # Police principale de l'écran titre
 CHEMIN_MUSIQUE = get_resource_path("assets/musics/Max Brhon - AI [NCS Release].mp3")
-CHEMIN_IMAGES_GIF = get_resource_path("images_gif")
+CHEMIN_IMAGES_GIF = get_resource_path("assets/images/hyphose_frames")
 VITESSE_ANIMATION_GIF = 60 # Vitesse d'animation du GIF en FPS (images par seconde)
