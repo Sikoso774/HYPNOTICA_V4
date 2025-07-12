@@ -27,7 +27,7 @@ TAILLE_POLICE_JEU = 35
 
 # --- Paramètres du Joueur ---
 PLAYER_SIZE = 50 # Taille du carré temporaire du joueur
-PLAYER_SPEED = 15 # Vitesse de déplacement du joueur
+PLAYER_SPEED = 260 # Vitesse de déplacement du joueur
 
 # --- Paramètres du Téléphone ---
 PHONE_SIZE = 30 # Taille du cercle temporaire du téléphone

@@ -6,11 +6,12 @@ from scripts.game_elements.resources import load_player_sprite
 
 
 class Player(pygame.sprite.Sprite):  # Hérite de pygame.sprite.Sprite
-    def __init__(self):
-        super().__init__()  # Appel au constructeur de la classe parente (Sprite)
+    def __init__(self, group):
+        super().__init__(group)  # Appel au constructeur de la classe parente (Sprite)
         self.size = PLAYER_SIZE
         self.speed = PLAYER_SPEED
         self.image = load_player_sprite(self.size)  # Charge le sprite (ou placeholder)
+        self.direction = pygame.math.Vector2()
 
         # Position initiale (centrée horizontalement, un peu au-dessus du bas)
         self.rect = self.image.get_rect(
@@ -18,18 +19,13 @@ class Player(pygame.sprite.Sprite):  # Hérite de pygame.sprite.Sprite
             bottom=HAUTEUR_ECRAN_JEU - 20
         )
 
-    def move(self, direction, screen_width):
-        """
-        Déplace le joueur horizontalement et le contraint à l'écran.
-        direction: -1 pour gauche, 1 pour droite
-        """
-        self.rect.x += direction * self.speed
+    def update(self, dt):
 
-        # Contraintes de l'écran
-        if self.rect.left < 0:
-            self.rect.left = 0
-        if self.rect.right > screen_width:
-            self.rect.right = screen_width
+        keys = pygame.key.get_pressed()  # <---- pour vérifier si une touche est pressée
+        self.direction.x = int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])  # <---- bcp plus simple
+        self.direction.y = int(keys[pygame.K_DOWN]) - int(keys[pygame.K_UP])
+        self.direction = self.direction.normalize() if self.direction else self.direction
+        self.rect.center += self.direction * self.speed * dt
 
     def draw(self, surface):
         """
@@ -38,36 +34,36 @@ class Player(pygame.sprite.Sprite):  # Hérite de pygame.sprite.Sprite
         surface.blit(self.image, self.rect)
 
 
+
 # --- Bloc de test pour l'exécution indépendante (optionnel) ---
 if __name__ == "__main__":
+    # general setup
     pygame.init()
     screen_test = pygame.display.set_mode((LARGEUR_ECRAN_JEU, HAUTEUR_ECRAN_JEU))
     pygame.display.set_caption("Test Player")
-
-    player_test = Player()
     running = True
     clock = pygame.time.Clock()
 
+    # elements
+    all_sprites = pygame.sprite.Group()
+    player = Player(all_sprites)
+
+    # main loop
     while running:
+        dt = clock.tick(60) / 1000
+        # event loop
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    player_test.move(-1, LARGEUR_ECRAN_JEU)
-                if event.key == pygame.K_RIGHT:
-                    player_test.move(1, LARGEUR_ECRAN_JEU)
 
-        # Le joueur bouge en continu si la touche est maintenue
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            player_test.move(-1, LARGEUR_ECRAN_JEU)
-        if keys[pygame.K_RIGHT]:
-            player_test.move(1, LARGEUR_ECRAN_JEU)
+        # update
+        all_sprites.update(dt)
 
-        screen_test.fill((0, 0, 0))  # Fond noir
-        player_test.draw(screen_test)
-        pygame.display.flip()
-        clock.tick(60)
+        # draw the game
+        screen_test.fill('#093815')
+        all_sprites.draw(screen_test)
+
+        pygame.display.update()
+
 
     pygame.quit()

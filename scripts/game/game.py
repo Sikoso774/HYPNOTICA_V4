@@ -29,18 +29,18 @@ class Game:
         pygame.display.set_caption(TITRE_FENETRE_JEU)
 
         self.clock = pygame.time.Clock()
+        self.dt = self.clock.tick(FPS) / 1000
         self.running = False  # État de la boucle de jeu
 
         # Initialisation des éléments du jeu
-        self.player = Player()
+
         self.phone = Phone()
         self.satiety_bar = Satiety()
         self.background = Background()
 
         # Groupes de sprites (optionnel mais très utile pour les collisions)
         self.all_sprites = pygame.sprite.Group()
-        self.all_sprites.add(self.player)
-        self.all_sprites.add(self.phone)  # Le téléphone pourrait aussi être dans un autre groupe si tu en as plusieurs
+        self.player = Player(self.all_sprites)
 
     def run(self):
         """
@@ -84,11 +84,8 @@ class Game:
         Met à jour la logique du jeu (mouvement, collisions, satiété).
         """
         # Mouvement du joueur basé sur les touches pressées
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
-            self.player.move(-1, LARGEUR_ECRAN_JEU)
-        if keys[pygame.K_RIGHT]:
-            self.player.move(1, LARGEUR_ECRAN_JEU)
+        self.all_sprites.update(self.dt)
+        self.all_sprites.draw(self.screen)
 
         # Mise à jour du téléphone
         self.phone.update()
