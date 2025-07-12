@@ -120,7 +120,3 @@ if __name__ == "__main__":
 
     except Exception as e:
         print(f"Une erreur s'est produite lors du test de Démarrage : {e}")
-    finally:
-        if pygame.get_init():
-            pygame.quit()
-        sys.exit()
