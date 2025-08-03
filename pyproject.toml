@@ -1,7 +1,7 @@
 [project]
-name = "hypnotica-v4"
+name = "version-v4"
 version = "0.1.0"
-description = "A prototype game"
+description = "Fichiers de Poetry réparés"
 authors = [
     {name = "Zoléni Kokolo Zassi",email = "zolenikokolozassi@gmail.com"}
 ]
