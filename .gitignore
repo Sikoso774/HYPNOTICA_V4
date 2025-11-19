@@ -1,7 +1,29 @@
-__pycache__
-*.pyc
-/backup
-.idea
+# --- Archives et Backups (Pour éviter votre erreur précédente) ---
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.bak
+*.old
+backup/
+backups/
+
+# --- Fichiers Système (Inutiles sur le repo) ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs et fichiers temporaires ---
+*.log
+*.tmp
+.cache/
+
+# --- Dépendances (Si c'est un projet Node.js, Python, Unity...) ---
+node_modules/
+__pycache__/
+*.env
+
+# Autres fihiers
 *.docx
 *.xlsx
-*.zip
